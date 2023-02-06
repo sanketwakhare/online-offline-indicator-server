@@ -11,16 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\express.js",
+            "program": "${workspaceFolder}\\index.js",
         },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Redis Connect",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\index.js"
-        }
     ]
 }

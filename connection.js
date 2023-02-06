@@ -8,7 +8,6 @@ const config = {
     database: 0
 };
 
-// const client = createClient();
 const client = createClient();
 client.on('error', (error) => console.error('Redis connection failed!', error));
 await client.connect();
