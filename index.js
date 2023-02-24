@@ -5,10 +5,8 @@ const app = express();
 app.use(express.json());
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
-    // res.end();
     next();
 });
 const port = 3000;
@@ -16,13 +14,12 @@ const port = 3000;
 import http from "http";
 const server = http.createServer(app);
 import { Server } from "socket.io";
+import { spawn } from 'child_process';
 const io = new Server(server);
 
-app.get('/status', async (req, res) => {
+app.get('/status', (req, res) => {
     const userId = req.query?.userId;
-    const status = await getStatus(userId);
-    const now_time = new Date().getTime();
-    const hb_time = Number(status);
+    const status = getStatus(userId);
     res.send({
         status,
     });
@@ -42,8 +39,6 @@ app.post('/heartbeat', async (req, res) => {
 
 app.get('/live-status', async (req, res) => {
     const result = await liveStatus();
-    // res.addHeader('Access-Control-Allow-Origin', '*');
-    console.log(res);
     res.send(result);
 });
 
